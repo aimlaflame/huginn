@@ -79,6 +79,17 @@ If you need more detailed instructions, see the [Novice setup guide][novice-setu
 [wiki]: https://github.com/huginn/huginn/wiki
 [novice-setup-guide]: https://github.com/huginn/huginn/wiki/Novice-setup-guide
 
+### Autopilot CrewAI Setup (Optional)
+
+If you want to run the two-agent autopilot workflow in this repository:
+
+* Create and activate a Python 3.12 environment.
+* Install Python dependencies with `pip install -r requirements.txt`.
+* Copy `.env.example` to `.env` and set at least `OPENROUTER_API_KEY` and your SMTP values.
+* Keep `.env` private and never commit credentials.
+* Run `python autopilot_agents.py` to execute the CrewAI sequence.
+
+
 ### Develop
 
 All agents have specs! And there's also acceptance tests that simulate running Huginn in a headless browser.

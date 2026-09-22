@@ -1,9 +1,22 @@
 import os
+import sys
+
 from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
 
+
+def _require_env(name: str) -> str:
+    value = os.environ.get(name)
+    if not value:
+        raise RuntimeError(
+            f"Missing required environment variable: {name}. "
+            "Copy /home/runner/work/huginn/huginn/.env.example to .env and set it before running."
+        )
+    return value
+
+
 # Connects to the free stealth/ox-alpha model via OpenRouter API
-openrouter_key = os.environ.get("OPENROUTER_API_KEY")
+openrouter_key = _require_env("OPENROUTER_API_KEY")
 llm_runtime = ChatOpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key=openrouter_key,
@@ -63,5 +76,9 @@ autonomous_recovery_crew = Crew(
 )
 
 if __name__ == "__main__":
-    print("🚀 Initiating Fiduciary Identity Resolution on Autopilot...")
-    autonomous_recovery_crew.kickoff()
+    try:
+        print("🚀 Initiating Fiduciary Identity Resolution on Autopilot...")
+        autonomous_recovery_crew.kickoff()
+    except Exception as exc:
+        print(f"Autopilot run failed: {exc}", file=sys.stderr)
+        raise
