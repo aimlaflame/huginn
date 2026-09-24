@@ -16,7 +16,10 @@ Use this checklist to run the two-agent autopilot flow in `/home/runner/work/hug
   - `SMTP_EMAIL`
   - `SMTP_PASSWORD`
   - `MY_INBOX_ROUTING`
+  - `AUTOPILOT_LOG_KEY_PATH`
+  - `AUTOPILOT_HISTORY_LOG_PATH`
 - [ ] Confirm `.env` stays uncommitted.
+- [ ] Generate/rotate provider API keys in official provider consoles (never from this script).
 
 ## 2) Manual run
 
@@ -37,6 +40,9 @@ Use this checklist to run the two-agent autopilot flow in `/home/runner/work/hug
   - `SMTP_EMAIL`
   - `SMTP_PASSWORD`
   - `MY_INBOX_ROUTING`
+- [ ] Map encrypted history variables:
+  - `AUTOPILOT_LOG_KEY_PATH`
+  - `AUTOPILOT_HISTORY_LOG_PATH`
 - [ ] Set the trigger schedule to run daily at 8:00 AM.
 - [ ] Execute one test run from n8n and verify success status.
 
@@ -46,12 +52,14 @@ Use this checklist to run the two-agent autopilot flow in `/home/runner/work/hug
 - [ ] Verify SMTP login still works.
 - [ ] Trigger the daily workflow (n8n schedule at 8:00 AM).
 - [ ] Confirm notification emails were sent.
+- [ ] Confirm encrypted history entries are appended at `AUTOPILOT_HISTORY_LOG_PATH`.
 - [ ] Archive output/logs for audit tracking.
 
 ## 5) Quick troubleshooting
 
 - Missing `OPENROUTER_API_KEY`: set it in `.env` before running.
 - SMTP failures: verify app password, server, port, and mailbox provider policy.
+- Missing encrypted log output: verify `AUTOPILOT_LOG_KEY_PATH` and `AUTOPILOT_HISTORY_LOG_PATH` paths are writable.
 - Runtime errors: rerun manually first, then check scheduler configuration.
 
 ## 6) iPhone, iPad, and Windows operations
