@@ -53,3 +53,17 @@ Use this checklist to run the two-agent autopilot flow in `/home/runner/work/hug
 - Missing `OPENROUTER_API_KEY`: set it in `.env` before running.
 - SMTP failures: verify app password, server, port, and mailbox provider policy.
 - Runtime errors: rerun manually first, then check scheduler configuration.
+
+## 6) iPhone, iPad, and Windows operations
+
+- [ ] Keep your repository synced on the server and your local device.
+- [ ] Use the same `.env` values across environments (without committing `.env`).
+- [ ] Validate one manual run after any credential or workflow change.
+- [ ] For iOS automation with Working Copy, configure a Shortcut with:
+  - `working-copy://x-callback-url/push/?repo=your_repo_name`
+- [ ] After each update, confirm the branch includes:
+  - `autopilot_agents.py`
+  - `.github/copilot-instructions.md`
+  - `.env.example`
+  - `requirements.txt`
+  - `doc/autopilot-runbook.md`

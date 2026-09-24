@@ -88,6 +88,7 @@ If you want to run the two-agent autopilot workflow in this repository:
 * Copy `.env.example` to `.env` and set at least `OPENROUTER_API_KEY` and your SMTP values.
 * Keep `.env` private and never commit credentials.
 * Run `python autopilot_agents.py` to execute the CrewAI sequence.
+* See `/home/runner/work/huginn/huginn/doc/autopilot-runbook.md` for full setup, n8n mapping, and daily operations.
 
 
 ### Develop
