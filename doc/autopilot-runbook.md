@@ -25,7 +25,22 @@ Use this checklist to run the two-agent autopilot flow in `/home/runner/work/hug
   - `python /home/runner/work/huginn/huginn/autopilot_agents.py`
 - [ ] Verify the run completes and output is produced.
 
-## 3) Daily operations checklist
+## 3) n8n import and environment mapping checklist
+
+- [ ] Import your workflow JSON into n8n (`n8n-autopilot-workflow.json`).
+- [ ] Open each workflow node and confirm credentials/variables are mapped.
+- [ ] Map OpenRouter runtime variable:
+  - `OPENROUTER_API_KEY`
+- [ ] Map SMTP variables:
+  - `SMTP_SERVER`
+  - `SMTP_PORT`
+  - `SMTP_EMAIL`
+  - `SMTP_PASSWORD`
+  - `MY_INBOX_ROUTING`
+- [ ] Set the trigger schedule to run daily at 8:00 AM.
+- [ ] Execute one test run from n8n and verify success status.
+
+## 4) Daily operations checklist
 
 - [ ] Verify OpenRouter key is active.
 - [ ] Verify SMTP login still works.
@@ -33,7 +48,7 @@ Use this checklist to run the two-agent autopilot flow in `/home/runner/work/hug
 - [ ] Confirm notification emails were sent.
 - [ ] Archive output/logs for audit tracking.
 
-## 4) Quick troubleshooting
+## 5) Quick troubleshooting
 
 - Missing `OPENROUTER_API_KEY`: set it in `.env` before running.
 - SMTP failures: verify app password, server, port, and mailbox provider policy.
