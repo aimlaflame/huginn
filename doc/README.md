@@ -18,3 +18,7 @@ Manual installation instructions which will guide through the steps to install H
 
 - [Deploy to Heroku](heroku/install.md)
 - [Update](heroku/update.md) an existing Heroku deployment
+
+## Automation
+
+- [Autopilot Runbook](autopilot-runbook.md) Setup and daily execution checklist for the CrewAI autopilot workflow
