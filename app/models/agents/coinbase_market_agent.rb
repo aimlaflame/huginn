@@ -23,13 +23,17 @@ module Agents
       or `hold`), and `timestamp`. Signals are based on the price change since the previous successful poll.
     MD
 
-    default_options do
+    def default_options
       {
         'product_id' => 'BTC-USD',
         'signal_threshold_percent' => '1.0',
         'expected_update_period_in_days' => '1',
         'disable_redirect_follow' => true
       }
+    end
+
+    def parse_body?
+      true
     end
 
     def working?
@@ -50,6 +54,10 @@ module Agents
       end
 
       ticker = response.body.is_a?(String) ? JSON.parse(response.body) : response.body
+      unless ticker.is_a?(Hash)
+        error("Coinbase ticker response was not an object")
+        return
+      end
       price = positive_finite_number(ticker['price'])
       unless price
         error("Coinbase ticker response did not contain a valid price")
@@ -73,7 +81,7 @@ module Agents
         'exchange' => 'coinbase',
         'product_id' => product_id,
         'price' => price,
-        'volume_24h' => positive_finite_number(ticker['volume']).to_f,
+        'volume_24h' => positive_finite_number(ticker['volume']) || 0.0,
         'change_percent' => change_percent.round(6),
         'signal' => signal,
         'timestamp' => ticker['time'].presence || Time.current.iso8601

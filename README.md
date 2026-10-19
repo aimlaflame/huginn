@@ -97,6 +97,10 @@ If you'd like to write your own Huginn Agent Gem, please see [huginn_agent](http
 
 Our general intention is to encourage complex and specific Agents to be written as Gems, while continuing to add new general-purpose Agents to the core Huginn repository.
 
+## Crypto market monitoring and paper trading
+
+See the [Coinbase spot monitoring and paper trading guide](doc/crypto-paper-trading.md) for a public ticker and simulation-only workflow. It does not place live orders.
+
 ## Deployment
 
 Please see [the Huginn Wiki](https://github.com/huginn/huginn/wiki#deploying-huginn) for detailed deployment strategies for different providers.

@@ -104,7 +104,8 @@ module Agents
     end
 
     def valid_market_event?(payload)
-      payload['exchange'] == 'coinbase' &&
+      payload.is_a?(Hash) &&
+        payload['exchange'] == 'coinbase' &&
         payload['product_id'] == product_id &&
         SIGNALS.include?(payload['signal']) &&
         positive_finite_number?(payload['price'])
@@ -151,7 +152,7 @@ module Agents
         return ['hold', 'Daily realized-loss limit reached']
       end
 
-      remaining_capacity = numeric_option('max_position_usd') - state['position_units'] * price
+      remaining_capacity = numeric_option('max_position_usd') - state['cost_basis_usd']
       amount = [numeric_option('order_size_usd'), state['cash_usd'], remaining_capacity].min
       return ['hold', 'Order, cash, or maximum-position limit prevents a buy'] unless amount.positive?
 
